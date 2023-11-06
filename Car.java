@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Car {
+abstract class Car {
     public int nrDoors; // Number of doors on the car
     public double enginePower; // Engine power of the car
     public double currentSpeed; // The current speed of the car
@@ -34,17 +34,11 @@ public class Car {
         currentSpeed = 0;
     }
 
-    public double speedFactor(){
-        return 0;
-    }
+    abstract double speedFactor();
 
-    public void incrementSpeed(double amount){
+    abstract void incrementSpeed(double amount);
 
-    }
-
-    public void decrementSpeed(double amount){
-
-    }
+    abstract void decrementSpeed(double amount);
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
