@@ -1,3 +1,6 @@
+import org.junit.Before;
+import org.junit.Test;
+
 import java.awt.*;
 
 abstract class Car implements Movable {
@@ -97,4 +100,5 @@ abstract class Car implements Movable {
         turnLeft();
         turnLeft();
     }
+
 }
