@@ -1,11 +1,16 @@
 import java.awt.*;
 
-abstract class Car {
+abstract class Car implements Movable {
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
+
+    private double x = 0;
+    private double y = 0;
+
+    private String direction = "North";
 
     public int getNrDoors(){
         return nrDoors;
@@ -48,5 +53,48 @@ abstract class Car {
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+        switch (direction){
+            case "North":
+                y += getCurrentSpeed();
+                break;
+            case "West":
+                x -= getCurrentSpeed();
+                break;
+            case "South":
+                y -= getCurrentSpeed();
+                break;
+            case "East":
+                x += getCurrentSpeed();
+                break;
+        }
+    }
+
+    @Override
+    public void turnLeft() {
+        switch (direction){
+            case "North":
+                direction = "West";
+                break;
+            case "West":
+                direction = "South";
+                break;
+            case "South":
+                direction = "East";
+                break;
+            case "East":
+                direction = "North";
+                break;
+        }
+    }
+
+    @Override
+    public void turnRight() {
+        turnLeft();
+        turnLeft();
+        turnLeft();
     }
 }
