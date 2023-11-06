@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -12,9 +12,34 @@ public class Saab95Test {
     }
 
     @Test
-    public void testDoors(){
-        assertEquals("Number of doors", saab.getNrDoors(), 2);
+    public void testIncrementSpeed(){
+        double originalSpeed = saab.getCurrentSpeed();
+        saab.incrementSpeed(2);
+        assertTrue("Speed should increase", originalSpeed < saab.getCurrentSpeed());
     }
+
+    @Test
+    public void testDecrementSpeed(){
+        double originalSpeed = saab.getCurrentSpeed();
+        saab.decrementSpeed(2);
+        assertTrue("Speed should decrease", originalSpeed > saab.getCurrentSpeed());
+    }
+
+    @Test
+    public void testTurbo(){
+        saab.stopEngine();
+        saab.setTurboOff();
+        saab.incrementSpeed(2);
+        double noTurboSpeed = saab.getCurrentSpeed();
+
+        saab.stopEngine();
+        saab.setTurboOn();
+        saab.incrementSpeed(2);
+        double turboSpeed = saab.currentSpeed;
+
+        assertTrue("Turbo speed should be higher than no turbo", turboSpeed > noTurboSpeed);
+    }
+
 
 
 
