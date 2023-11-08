@@ -12,6 +12,16 @@ public class CarTest {
     }
 
     @Test
+    public void testGetNumberOfDoors(){
+        assertEquals("Number of doors should be 2", saab.getNrDoors(), 2);
+    }
+
+    @Test
+    public void testGetEnginePower(){
+        assertTrue("Engine power should be 125", saab.getEnginePower() == 125);
+    }
+
+    @Test
     public void testTurnLeftFromSouth(){
         saab.setDirection("South");
         saab.turnLeft();
@@ -46,7 +56,7 @@ public class CarTest {
         saab.setDirection("South");
         saab.turnRight();
         String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "East");
+        assertEquals("New direction should be South", newDirection, "West");
     }
 
     @Test
