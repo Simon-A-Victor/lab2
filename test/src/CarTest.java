@@ -90,4 +90,12 @@ public class CarTest {
         assertTrue("test gas", oldSpeed < currentSpeed);
     }
 
+    @Test
+    public void testBrake(){
+        double oldSpeed = saab.getCurrentSpeed();
+        saab.brake(2);
+        double currentSpeed = saab.getCurrentSpeed();
+        assertTrue("test gas", oldSpeed > currentSpeed);
+    }
+
 }
