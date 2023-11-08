@@ -3,6 +3,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.awt.*;
+
 public class CarTest {
     private Saab95 saab;
 
@@ -14,6 +16,11 @@ public class CarTest {
     @Test
     public void testGetNumberOfDoors(){
         assertEquals("Number of doors should be 2", saab.getNrDoors(), 2);
+    }
+
+    @Test
+    public void testGetColor(){
+        assertEquals("Color should be red", saab.getColor(), Color.red);
     }
 
     @Test
@@ -83,28 +90,43 @@ public class CarTest {
     }
 
     @Test
-    public void testMove() {
-        double oldPosition;
-        double newPosition;
-        double currentSpeed = saab.getCurrentSpeed();
-        String direction = saab.getDirection();
+    public void testMoveNorth(){
+        saab.setDirection("North");
+        double oldPosition = saab.getYPosition();
 
-        if (direction.equals("North") || direction.equals("South")){
-            oldPosition = saab.getYPosition();
-            saab.move();
-            newPosition = saab.getYPosition();
+        saab.move();
+        double newPosition = saab.getYPosition();
+        assertTrue("Wrong position", oldPosition + saab.getCurrentSpeed() == newPosition);
+    }
 
-        } else {
-            oldPosition = saab.getXPosition();
-            saab.move();
-            newPosition = saab.getXPosition();
-        }
+    @Test
+    public void testMoveEast(){
+        saab.setDirection("East");
+        double oldPosition = saab.getXPosition();
 
-        if (direction.equals("North") || direction.equals("East")){
-            assertTrue("move check", (oldPosition + currentSpeed) == newPosition);
-        } else {
-            assertTrue("move check", (oldPosition - currentSpeed) == newPosition);
-        }
+        saab.move();
+        double newPosition = saab.getXPosition();
+        assertTrue("Wrong position", oldPosition + saab.getCurrentSpeed() == newPosition);
+    }
+
+    @Test
+    public void testMoveSouth(){
+        saab.setDirection("South");
+        double oldPosition = saab.getYPosition();
+
+        saab.move();
+        double newPosition = saab.getYPosition();
+        assertTrue("Wrong position", oldPosition - saab.getCurrentSpeed() == newPosition);
+    }
+
+    @Test
+    public void testMoveWest(){
+        saab.setDirection("West");
+        double oldPosition = saab.getXPosition();
+
+        saab.move();
+        double newPosition = saab.getXPosition();
+        assertTrue("Wrong position", oldPosition - saab.getCurrentSpeed() == newPosition);
     }
 
     @Test
