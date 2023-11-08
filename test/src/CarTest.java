@@ -11,50 +11,65 @@ public class CarTest {
         saab = new Saab95();
     }
 
-
-
     @Test
-    public void testTurnLeft(){
-        String oldDirection = saab.getDirection();
+    public void testTurnLeftFromSouth(){
+        saab.setDirection("South");
         saab.turnLeft();
         String newDirection = saab.getDirection();
-
-        switch(oldDirection){
-            case "North":
-                assertEquals("Direction check", newDirection, "West");
-                break;
-            case "East":
-                assertEquals("Direction check", newDirection, "North");
-                break;
-            case "South":
-                assertEquals("Direction check", newDirection, "East");
-                break;
-            case "West":
-                assertEquals("Direction check", newDirection, "South");
-                break;
-        }
+        assertEquals("New direction should be South", newDirection, "East");
     }
 
     @Test
-    public void testTurnRight(){
-        String oldDirection = saab.getDirection();
+    public void testTurnLeftFromWest(){
+        saab.setDirection("West");
+        saab.turnLeft();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, "South");
+    }
+    @Test
+    public void testTurnLeftFromEast(){
+        saab.setDirection("East");
+        saab.turnLeft();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, "North");
+    }
+
+    @Test
+    public void testTurnLeftFromNorth(){
+        saab.setDirection("North");
+        saab.turnLeft();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be East", newDirection, "West");
+    }
+    @Test
+    public void testTurnRightFromSouth(){
+        saab.setDirection("East");
         saab.turnRight();
         String newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, "South");
+    }
 
-        switch(oldDirection){
-            case "North":
-                assertEquals("Direction check", newDirection, "East");
-                break;
-            case "East":
-                assertEquals("Direction check", newDirection, "South");
-                break;
-            case "South":
-                assertEquals("Direction check", newDirection, "West");
-                break;
-            case "West":
-                assertEquals("Direction check", newDirection, "North");
-                break;
-        }
+    @Test
+    public void testTurnRightFromWest(){
+        saab.setDirection("East");
+        saab.turnRight();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, "South");
+    }
+    @Test
+    public void testTurnRightFromEast(){
+        saab.setDirection("East");
+        saab.turnRight();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, "South");
+    }
+
+    @Test
+    public void testTurnRightFromNorth(){
+        saab.setDirection("North");
+        saab.turnRight();
+        String newDirection = saab.getDirection();
+        assertEquals("New direction should be East", newDirection, "East");
     }
 
     @Test

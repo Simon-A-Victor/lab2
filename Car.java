@@ -2,6 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 abstract class Car implements Movable {
     protected int nrDoors; // Number of doors on the car
@@ -17,6 +20,13 @@ abstract class Car implements Movable {
 
     public String getDirection(){
         return direction;
+    }
+
+    public void setDirection(String newDirection){
+        Set<String> validDirection = new HashSet<>(Arrays.asList("North", "East", "South", "West"));
+        if (validDirection.contains(newDirection)){
+            direction = newDirection;
+        }
     }
 
     public double getXPosition(){
