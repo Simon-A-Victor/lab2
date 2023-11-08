@@ -15,6 +15,10 @@ abstract class Car implements Movable {
 
     private String direction = "North";
 
+    public String getDirection(){
+        return direction;
+    }
+
     public int getNrDoors(){
         return nrDoors;
     }
