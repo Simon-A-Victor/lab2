@@ -43,18 +43,18 @@ public class CarTest {
     }
     @Test
     public void testTurnRightFromSouth(){
-        saab.setDirection("East");
+        saab.setDirection("South");
         saab.turnRight();
         String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "South");
+        assertEquals("New direction should be South", newDirection, "East");
     }
 
     @Test
     public void testTurnRightFromWest(){
-        saab.setDirection("East");
+        saab.setDirection("West");
         saab.turnRight();
         String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "South");
+        assertEquals("New direction should be South", newDirection, "North");
     }
     @Test
     public void testTurnRightFromEast(){
