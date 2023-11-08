@@ -2,7 +2,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Before;
-
 import java.awt.*;
 
 public class CarTest {
@@ -145,17 +144,25 @@ public class CarTest {
     @Test
     public void testGas(){
         double oldSpeed = saab.getCurrentSpeed();
-        saab.gas(2);
+        saab.gas(0.5);
         double currentSpeed = saab.getCurrentSpeed();
         assertTrue("test gas", oldSpeed < currentSpeed);
     }
 
     @Test
     public void testBrake(){
+        saab.stopEngine();
+        saab.startEngine();
         double oldSpeed = saab.getCurrentSpeed();
-        saab.brake(2);
+        saab.brake(0.5);
         double currentSpeed = saab.getCurrentSpeed();
-        assertTrue("test gas", oldSpeed > currentSpeed);
+        assertTrue("test break", oldSpeed > currentSpeed);
     }
 
+    @Test
+    public void testTurbo(){
+        Volvo240 volvo = new Volvo240();
+        volvo.setTurboOn();
+        volvo.setTurboOff();
+    }
 }
