@@ -82,4 +82,12 @@ public class CarTest {
         }
     }
 
+    @Test
+    public void testGas(){
+        double oldSpeed = saab.getCurrentSpeed();
+        saab.gas(2);
+        double currentSpeed = saab.getCurrentSpeed();
+        assertTrue("test gas", oldSpeed < currentSpeed);
+    }
+
 }
