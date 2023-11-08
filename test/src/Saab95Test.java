@@ -14,14 +14,16 @@ public class Saab95Test {
     @Test
     public void testIncrementSpeed(){
         double originalSpeed = saab.getCurrentSpeed();
-        saab.incrementSpeed(2);
+        saab.incrementSpeed(0.5);
         assertTrue("Speed should increase", originalSpeed < saab.getCurrentSpeed());
     }
 
     @Test
     public void testDecrementSpeed(){
+        saab.stopEngine();
+        saab.incrementSpeed(0.5);
         double originalSpeed = saab.getCurrentSpeed();
-        saab.decrementSpeed(2);
+        saab.decrementSpeed(0.5);
         assertTrue("Speed should decrease", originalSpeed > saab.getCurrentSpeed());
     }
 
@@ -29,7 +31,7 @@ public class Saab95Test {
     public void testTurbo(){
         saab.stopEngine();
         saab.setTurboOff();
-        saab.incrementSpeed(2);
+        saab.incrementSpeed(0.5);
         double noTurboSpeed = saab.getCurrentSpeed();
 
         saab.stopEngine();
