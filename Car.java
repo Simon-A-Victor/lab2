@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+
 abstract class Car implements Movable {
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
@@ -68,9 +69,9 @@ abstract class Car implements Movable {
 
     abstract void decrementSpeed(double amount);
 
-    abstract void setTurboOn();
+    protected void setTurboOn(){}
 
-    abstract void setTurboOff();
+    protected void setTurboOff(){}
 
     public void gas(double amount){
         if (0 <= amount && amount <= 1){
