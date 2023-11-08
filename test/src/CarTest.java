@@ -24,6 +24,19 @@ public class CarTest {
     }
 
     @Test
+    public void testSetColor(){
+        saab.setColor(Color.black);
+        assertEquals("Color should be black", saab.getColor(), Color.black);
+    }
+
+    @Test
+    public void testStartEngine(){
+        saab.stopEngine();
+        saab.startEngine();
+        assertTrue("Current speed should be 0.1", saab.getCurrentSpeed() == 0.1);
+    }
+
+    @Test
     public void testGetEnginePower(){
         assertTrue("Engine power should be 125", saab.getEnginePower() == 125);
     }
