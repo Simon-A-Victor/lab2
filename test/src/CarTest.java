@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -10,6 +10,8 @@ public class CarTest {
     public void setUp(){
         saab = new Saab95();
     }
+
+
 
     @Test
     public void testTurnLeft(){
@@ -52,6 +54,31 @@ public class CarTest {
             case "West":
                 assertEquals("Direction check", newDirection, "North");
                 break;
+        }
+    }
+
+    @Test
+    public void testMove() {
+        double oldPosition;
+        double newPosition;
+        double currentSpeed = saab.getCurrentSpeed();
+        String direction = saab.getDirection();
+
+        if (direction.equals("North") || direction.equals("South")){
+            oldPosition = saab.getYPosition();
+            saab.move();
+            newPosition = saab.getYPosition();
+
+        } else {
+            oldPosition = saab.getXPosition();
+            saab.move();
+            newPosition = saab.getXPosition();
+        }
+
+        if (direction.equals("North") || direction.equals("East")){
+            assertTrue("move check", (oldPosition + currentSpeed) == newPosition);
+        } else {
+            assertTrue("move check", (oldPosition - currentSpeed) == newPosition);
         }
     }
 
