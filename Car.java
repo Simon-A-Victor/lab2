@@ -6,6 +6,12 @@ import java.util.Set;
 
 
 abstract class Car implements Movable {
+    public enum Directions{
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
@@ -15,17 +21,14 @@ abstract class Car implements Movable {
     private double x = 0;
     private double y = 0;
 
-    private String direction = "North";
+    Directions direction  = Directions.NORTH;
 
-    public String getDirection(){
+    public Directions getDirection(){
         return direction;
     }
 
-    public void setDirection(String newDirection){
-        Set<String> validDirection = new HashSet<>(Arrays.asList("North", "East", "South", "West"));
-        if (validDirection.contains(newDirection)){
-            direction = newDirection;
-        }
+    public void setDirection(Directions newDirection){
+        direction = newDirection;
     }
 
     public double getXPosition(){
@@ -69,8 +72,8 @@ abstract class Car implements Movable {
 
     abstract void decrementSpeed(double amount);
 
-    protected void setTurboOn(){}
 
+    protected void setTurboOn(){}
     protected void setTurboOff(){}
 
     public void gas(double amount){
@@ -89,16 +92,16 @@ abstract class Car implements Movable {
     @Override
     public void move() {
         switch (direction){
-            case "North":
+            case NORTH:
                 y += getCurrentSpeed();
                 break;
-            case "West":
+            case WEST:
                 x -= getCurrentSpeed();
                 break;
-            case "South":
+            case SOUTH:
                 y -= getCurrentSpeed();
                 break;
-            case "East":
+            case EAST:
                 x += getCurrentSpeed();
                 break;
         }
@@ -106,27 +109,12 @@ abstract class Car implements Movable {
 
     @Override
     public void turnLeft() {
-        switch (direction){
-            case "North":
-                direction = "West";
-                break;
-            case "West":
-                direction = "South";
-                break;
-            case "South":
-                direction = "East";
-                break;
-            case "East":
-                direction = "North";
-                break;
-        }
+        direction = Directions.values()[(direction.ordinal()+3)%4];
     }
 
     @Override
     public void turnRight() {
-        turnLeft();
-        turnLeft();
-        turnLeft();
+        direction = Directions.values()[(direction.ordinal()+1)%4];
     }
 
 }

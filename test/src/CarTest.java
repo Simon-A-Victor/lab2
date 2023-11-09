@@ -42,103 +42,103 @@ public class CarTest {
 
     @Test
     public void testTurnLeftFromSouth(){
-        saab.setDirection("South");
+        saab.setDirection(Car.Directions.SOUTH);
         saab.turnLeft();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "East");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be West", newDirection, Car.Directions.EAST);
     }
 
     @Test
     public void testTurnLeftFromWest(){
-        saab.setDirection("West");
+        saab.setDirection(Car.Directions.WEST);
         saab.turnLeft();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "South");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, Car.Directions.SOUTH);
     }
     @Test
     public void testTurnLeftFromEast(){
-        saab.setDirection("East");
+        saab.setDirection(Car.Directions.EAST);
         saab.turnLeft();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "North");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be North", newDirection, Car.Directions.NORTH);
     }
 
     @Test
     public void testTurnLeftFromNorth(){
-        saab.setDirection("North");
+        saab.setDirection(Car.Directions.NORTH);
         saab.turnLeft();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be East", newDirection, "West");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be West", newDirection, Car.Directions.WEST);
     }
     @Test
     public void testTurnRightFromSouth(){
-        saab.setDirection("South");
+        saab.setDirection(Car.Directions.SOUTH);
         saab.turnRight();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "West");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be west", newDirection, Car.Directions.WEST);
     }
 
     @Test
     public void testTurnRightFromWest(){
-        saab.setDirection("West");
+        saab.setDirection(Car.Directions.WEST);
         saab.turnRight();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "North");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be North", newDirection, Car.Directions.NORTH);
     }
     @Test
     public void testTurnRightFromEast(){
-        saab.setDirection("East");
+        saab.setDirection(Car.Directions.EAST);
         saab.turnRight();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be South", newDirection, "South");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be South", newDirection, Car.Directions.SOUTH);
     }
 
     @Test
     public void testTurnRightFromNorth(){
-        saab.setDirection("North");
+        saab.setDirection(Car.Directions.NORTH);
         saab.turnRight();
-        String newDirection = saab.getDirection();
-        assertEquals("New direction should be East", newDirection, "East");
+        Car.Directions newDirection = saab.getDirection();
+        assertEquals("New direction should be East", newDirection, Car.Directions.EAST);
     }
 
     @Test
     public void testMoveNorth(){
-        saab.setDirection("North");
+        saab.setDirection(Car.Directions.NORTH);
         double oldPosition = saab.getYPosition();
 
         saab.move();
         double newPosition = saab.getYPosition();
-        assertTrue("Wrong position", oldPosition + saab.getCurrentSpeed() == newPosition);
+        assertTrue("Y position should increase", oldPosition + saab.getCurrentSpeed() == newPosition);
     }
 
     @Test
     public void testMoveEast(){
-        saab.setDirection("East");
+        saab.setDirection(Car.Directions.EAST);
         double oldPosition = saab.getXPosition();
 
         saab.move();
         double newPosition = saab.getXPosition();
-        assertTrue("Wrong position", oldPosition + saab.getCurrentSpeed() == newPosition);
+        assertTrue("X position should increase", oldPosition + saab.getCurrentSpeed() == newPosition);
     }
 
     @Test
     public void testMoveSouth(){
-        saab.setDirection("South");
+        saab.setDirection(Car.Directions.SOUTH);
         double oldPosition = saab.getYPosition();
 
         saab.move();
         double newPosition = saab.getYPosition();
-        assertTrue("Wrong position", oldPosition - saab.getCurrentSpeed() == newPosition);
+        assertTrue("Y position should decrease", oldPosition - saab.getCurrentSpeed() == newPosition);
     }
 
     @Test
     public void testMoveWest(){
-        saab.setDirection("West");
+        saab.setDirection(Car.Directions.WEST);
         double oldPosition = saab.getXPosition();
 
         saab.move();
         double newPosition = saab.getXPosition();
-        assertTrue("Wrong position", oldPosition - saab.getCurrentSpeed() == newPosition);
+        assertTrue("X Position should decrease", oldPosition - saab.getCurrentSpeed() == newPosition);
     }
 
     @Test
