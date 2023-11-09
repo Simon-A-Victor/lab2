@@ -159,10 +159,4 @@ public class CarTest {
         assertTrue("test break", oldSpeed > currentSpeed);
     }
 
-    @Test
-    public void testTurbo(){
-        Volvo240 volvo = new Volvo240();
-        volvo.setTurboOn();
-        volvo.setTurboOff();
-    }
 }

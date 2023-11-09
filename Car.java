@@ -73,9 +73,6 @@ abstract class Car implements Movable {
     abstract void decrementSpeed(double amount);
 
 
-    protected void setTurboOn(){}
-    protected void setTurboOff(){}
-
     public void gas(double amount){
         if (0 <= amount && amount <= 1){
             incrementSpeed(amount);
