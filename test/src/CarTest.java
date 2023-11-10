@@ -159,4 +159,10 @@ public class CarTest {
         assertTrue("test break", oldSpeed > currentSpeed);
     }
 
+    @Test
+    public void testIsStationary(){
+        saab.gas(0.5);
+        assertFalse("Should not be stationary", saab.isStationary());
+    }
+
 }
