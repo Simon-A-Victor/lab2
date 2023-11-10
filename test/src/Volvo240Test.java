@@ -8,7 +8,7 @@ public class Volvo240Test {
 
     @Before
     public void setUp(){
-        volvo = new Volvo240();
+        volvo = new Volvo240(0,0);
     }
 
     @Test

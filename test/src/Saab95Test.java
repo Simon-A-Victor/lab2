@@ -8,7 +8,7 @@ public class Saab95Test {
 
     @Before
     public void setUp(){
-        saab = new Saab95();
+        saab = new Saab95(0,0);
     }
 
     @Test
