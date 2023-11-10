@@ -1,8 +1,6 @@
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+
 
 
 abstract class Car implements Movable {
@@ -18,8 +16,17 @@ abstract class Car implements Movable {
     protected Color color; // Color of the car
     protected String modelName; // The car model name
 
-    private double x = 0;
-    private double y = 0;
+    private double x;
+    private double y;
+
+    public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y){
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.color = color;
+        this.modelName = modelName;
+        this.x = x;
+        this.y = y;
+    }
 
     Directions direction  = Directions.NORTH;
 
