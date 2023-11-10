@@ -15,7 +15,4 @@ abstract class platformVehicle extends Car {
         platformAngle = degrees;
     }
 
-    protected boolean platformIsDown(){
-        return getPlatformAngle() == 0.0;
-    }
 }

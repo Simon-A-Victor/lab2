@@ -30,4 +30,9 @@ public class SemiTruck extends platformVehicle implements Loadable {
     public void unload() {
 
     }
+
+    protected boolean platformIsDown(){
+        return getPlatformAngle() == 0.0;
+    }
+
 }
