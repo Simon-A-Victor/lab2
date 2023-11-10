@@ -20,4 +20,9 @@ public class SemiTruck extends platformVehicle {
     double speedFactor() {
         return 1;
     }
+
+    protected boolean platformIsDown(){
+        return getPlatformAngle() == 0.0;
+    }
+
 }
