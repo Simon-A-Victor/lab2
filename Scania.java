@@ -2,12 +2,8 @@ import java.awt.*;
 
 public class Scania extends Car{
 
-    public Scania(){
-        nrDoors = 2;
-        color = Color.black;
-        enginePower = 250;
-        modelName = "Scania";
-        stopEngine();
+    public Scania(double x, double y){
+        super(2,250,Color.black,"Scania",x, y);
     }
     @Override
     double speedFactor() {
