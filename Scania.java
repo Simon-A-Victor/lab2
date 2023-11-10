@@ -1,19 +1,9 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends platformVehicle {
 
     public Scania(double x, double y) {
         super(2, 250, Color.black, "Scania", x, y);
-    }
-
-    private double platformAngle = 0;
-
-    public double getPlatformAngle(){
-        return platformAngle;
-    }
-
-    private void setPlatformAngle(double degrees){
-        platformAngle = degrees;
     }
 
     public void tiltPlatform(int degrees) {
