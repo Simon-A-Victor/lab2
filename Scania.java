@@ -6,22 +6,38 @@ public class Scania extends Car {
         super(2, 250, Color.black, "Scania", x, y);
     }
 
-    public double platformAngle = 0;
+    private double platformAngle = 0;
+
+    public double getPlatformAngle(){
+        return platformAngle;
+    }
+
+    private void setPlatformAngle(double degrees){
+        platformAngle = degrees;
+    }
 
     public void tiltPlatform(int degrees) {
+        if(this.isStationary()){
+            this.setPlatformAngle(this.getPlatformAngle() + degrees);
 
-        platformAngle += degrees;
-
-        if (platformAngle > 70) {
-            platformAngle = 70;
-        } else if (platformAngle < 0) {
-            platformAngle = 0;
+            if (this.getPlatformAngle() > 70) {
+                this.setPlatformAngle(70);
+            } else if (this.getPlatformAngle() < 0) {
+                this.setPlatformAngle(0);
+            }
         }
     }
 
     @Override
     public double speedFactor() {
         return 1;
+    }
+
+    @Override
+    public void gas(double amount){
+        if (0 <= amount && amount <= 1 && getPlatformAngle() == 0){
+            incrementSpeed(amount);
+        }
     }
 
 }
