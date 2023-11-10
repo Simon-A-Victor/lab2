@@ -9,9 +9,21 @@ public class Scania extends Car{
         modelName = "Scania";
         stopEngine();
     }
+
+    public double flakVinkelGrader = 0;
+
+    public void changeFlak(int grader){
+        flakVinkelGrader += grader;
+
+        if (flakVinkelGrader > 70){
+            flakVinkelGrader = 70;
+        } else if (flakVinkelGrader < 0) {
+            flakVinkelGrader = 0;
+        }
+    }
     @Override
-    double speedFactor() {
-        return 0;
+    public double speedFactor() {
+        return 1;
     }
 
     @Override
