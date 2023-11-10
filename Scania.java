@@ -12,7 +12,7 @@ public class Scania extends platformVehicle {
 
             if (this.getPlatformAngle() > 70) {
                 this.setPlatformAngle(70);
-            } else if (this.getPlatformAngle() < 0) {
+            } else if (this.platformIsDown()) {
                 this.setPlatformAngle(0);
             }
         }
