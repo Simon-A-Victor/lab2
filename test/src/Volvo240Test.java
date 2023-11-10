@@ -14,15 +14,15 @@ public class Volvo240Test {
     @Test
     public void testIncrementSpeed(){
         double originalSpeed = volvo.getCurrentSpeed();
-        volvo.incrementSpeed(2);
+        volvo.gas(0.5);
         assertTrue("Speed should increase", originalSpeed < volvo.getCurrentSpeed());
 
     }
     @Test
     public void testDecrementSpeed(){
-        volvo.incrementSpeed(10);
+        volvo.gas(1);
         double originalSpeed = volvo.getCurrentSpeed();
-        volvo.decrementSpeed(2);
+        volvo.brake(0.5);
         assertTrue("Speed should decrease", originalSpeed > volvo.getCurrentSpeed());
     }
 
