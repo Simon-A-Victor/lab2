@@ -58,6 +58,11 @@ abstract class Car implements Movable {
         return currentSpeed;
     }
 
+    public boolean isStationary(){
+        double speed = getCurrentSpeed();
+        return speed == 0;
+    }
+
     public Color getColor(){
         return color;
     }
