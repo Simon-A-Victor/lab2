@@ -6,15 +6,15 @@ public class Scania extends Car{
         super(2,250,Color.black,"Scania",x, y);
     }
 
-    public double flakVinkelGrader = 0;
+    public double platformAngle = 0;
 
-    public void changeFlak(int grader){
-        flakVinkelGrader += grader;
+    public void tiltPlatform(int degrees){
+        platformAngle += degrees;
 
-        if (flakVinkelGrader > 70){
-            flakVinkelGrader = 70;
-        } else if (flakVinkelGrader < 0) {
-            flakVinkelGrader = 0;
+        if (platformAngle > 70){
+            platformAngle = 70;
+        } else if (platformAngle < 0) {
+            platformAngle = 0;
         }
     }
     @Override
