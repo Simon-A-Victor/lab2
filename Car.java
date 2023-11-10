@@ -26,6 +26,7 @@ abstract class Car implements Movable {
         this.modelName = modelName;
         this.x = x;
         this.y = y;
+        this.stopEngine();
     }
 
     Directions direction  = Directions.NORTH;
