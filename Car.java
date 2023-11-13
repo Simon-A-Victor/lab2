@@ -3,7 +3,7 @@ import java.awt.*;
 
 
 
-abstract class Car implements Movable {
+abstract class Car implements Movable, Loadable {
     public enum Directions{
         NORTH,
         EAST,
@@ -17,16 +17,19 @@ abstract class Car implements Movable {
     private String modelName; // The car model name
     private Directions direction;
 
+    private int size;
+
     private double x;
     private double y;
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y){
+    public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
         this.x = x;
         this.y = y;
+        this.size = size;
         this.stopEngine();
         this.direction  = Directions.NORTH;
     }
@@ -133,4 +136,6 @@ abstract class Car implements Movable {
         this.setDirection(Directions.values()[(direction.ordinal()+1)%4]);
     }
 
+    @Override
+    public int getSize(){ return size;}
 }

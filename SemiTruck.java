@@ -1,9 +1,9 @@
 import java.awt.*;
 
-public class SemiTruck extends platformVehicle implements Loader {
+public class SemiTruck extends PlatformVehicle implements Loader {
 
     public SemiTruck(double x, double y){
-        super(2,250, Color.black,"Semi69",x, y);
+        super(2,250, Color.black,"Semi69",x, y, 15);
     }
 
     public void tiltPlatform() {

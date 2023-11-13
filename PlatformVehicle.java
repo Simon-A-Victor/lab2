@@ -1,10 +1,10 @@
 import java.awt.*;
 
-abstract class platformVehicle extends Car {
+abstract class PlatformVehicle extends Car {
     private double platformAngle = 0.0;
 
-    public platformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
-        super(nrDoors, enginePower, color, modelName, x, y);
+    public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
+        super(nrDoors, enginePower, color, modelName, x, y, size);
     }
 
     protected double getPlatformAngle(){
