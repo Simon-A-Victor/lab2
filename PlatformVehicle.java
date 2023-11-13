@@ -3,10 +3,12 @@ import java.awt.*;
 abstract class PlatformVehicle extends Car implements Loader {
     private double platformAngle = 0.0;
     private int maxSize;
+    private int capacity;
 
-    public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size, int maxSize) {
+    public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size, int maxSize, int capacity) {
         super(nrDoors, enginePower, color, modelName, x, y, size);
         this.maxSize = maxSize;
+        this.capacity = capacity;
     }
 
     protected double getPlatformAngle(){
@@ -28,7 +30,11 @@ abstract class PlatformVehicle extends Car implements Loader {
         }
     }
 
+    @Override
     public int getMaxSize(){return maxSize;}
+
+    @Override
+    public int getCapacity(){return capacity;}
 
     @Override
     public void load(Loadable other) {

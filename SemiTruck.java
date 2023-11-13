@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class SemiTruck extends PlatformVehicle{
     public SemiTruck(double x, double y){
-        super(2,250, Color.black,"Semi69",x, y, 15, 5);
+        super(2,250, Color.black,"Semi69",x, y, 15, 5, 4);
     }
 
     public void tiltPlatform() {

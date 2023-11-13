@@ -5,4 +5,6 @@ public interface Loader {
     void unload();
 
     int getMaxSize();
+
+    int getCapacity();
 }
