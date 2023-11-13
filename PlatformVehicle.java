@@ -19,4 +19,11 @@ abstract class PlatformVehicle extends Car {
         return getPlatformAngle() == 0.0;
     }
 
+    @Override
+    public void gas(double amount){
+        if (0 <= amount && amount <= 1 && platformIsUp()){
+            this.incrementSpeed(amount);
+        }
+    }
+
 }

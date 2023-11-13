@@ -23,11 +23,4 @@ public class Scania extends PlatformVehicle {
         return 1;
     }
 
-    @Override
-    public void gas(double amount){
-        if (0 <= amount && amount <= 1 && platformIsUp()){
-            this.incrementSpeed(amount);
-        }
-    }
-
 }
