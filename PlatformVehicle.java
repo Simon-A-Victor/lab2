@@ -1,17 +1,17 @@
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Stack;
 
 abstract class PlatformVehicle extends Car implements Loader {
     private double platformAngle = 0.0;
     private int maxSize;
     private int capacity;
-    private ArrayList<Loadable> loaded;
+    private Stack<Loadable> loaded;
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size, int maxSize, int capacity) {
         super(nrDoors, enginePower, color, modelName, x, y, size);
         this.maxSize = maxSize;
         this.capacity = capacity;
-        this.loaded  = new ArrayList<Loadable>();
+        this.loaded  = new Stack<Loadable>();
     }
 
     protected double getPlatformAngle(){
@@ -39,13 +39,19 @@ abstract class PlatformVehicle extends Car implements Loader {
     @Override
     public int getCapacity(){return capacity;}
 
-    @Override
-    public void load(Loadable other) {
+    public void placeDown(){
 
     }
 
     @Override
+    public void load(Loadable other) {
+        this.loaded.push(other);
+    }
+
+    @Override
     public void unload() {
+        Loadable unloaded = this.loaded.pop();
+
     }
 
 }
