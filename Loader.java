@@ -1,5 +1,8 @@
 public interface Loader {
-    void load();
+
+    void load(Loadable other);
 
     void unload();
+
+    int getMaxSize();
 }
