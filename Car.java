@@ -4,12 +4,7 @@ import java.awt.*;
 
 
 abstract class Car implements Movable, Loadable {
-    public enum Directions{
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    }
+
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
