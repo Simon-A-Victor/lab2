@@ -4,11 +4,13 @@ abstract class PlatformVehicle extends Car implements Loader {
     private double platformAngle = 0.0;
     private int maxSize;
     private int capacity;
+    private Loadable[] loaded;
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size, int maxSize, int capacity) {
         super(nrDoors, enginePower, color, modelName, x, y, size);
         this.maxSize = maxSize;
         this.capacity = capacity;
+        this.loaded  = new Loadable[capacity];
     }
 
     protected double getPlatformAngle(){
@@ -38,6 +40,7 @@ abstract class PlatformVehicle extends Car implements Loader {
 
     @Override
     public void load(Loadable other) {
+
     }
 
     @Override
