@@ -1,4 +1,4 @@
-public interface Loadable {
+public interface Loader {
     void load();
 
     void unload();
