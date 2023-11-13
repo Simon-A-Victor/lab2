@@ -8,10 +8,10 @@ public class SemiTruck extends platformVehicle implements Loadable {
 
     public void tiltPlatform() {
         if(this.isStationary()){
-            if(this.platformIsDown()){
-                this.setPlatformAngle(0);
-            } else {
+            if(this.platformIsUp()){
                 this.setPlatformAngle(70);
+            } else {
+                this.setPlatformAngle(0);
             }
         }
     }
@@ -31,8 +31,6 @@ public class SemiTruck extends platformVehicle implements Loadable {
 
     }
 
-    protected boolean platformIsDown(){
-        return getPlatformAngle() == 0.0;
-    }
+
 
 }
