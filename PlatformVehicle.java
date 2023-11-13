@@ -38,7 +38,6 @@ abstract class PlatformVehicle extends Car implements Loader {
 
     @Override
     public void load(Loadable other) {
-
     }
 
     @Override

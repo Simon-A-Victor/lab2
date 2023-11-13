@@ -63,6 +63,11 @@ abstract class Car implements Movable, Loadable {
         return currentSpeed;
     }
 
+    @Override
+    public void setCurrentSpeed(double speed){
+        currentSpeed = speed;
+    }
+
     public boolean isStationary(){
         double speed = getCurrentSpeed();
         return speed == 0;
