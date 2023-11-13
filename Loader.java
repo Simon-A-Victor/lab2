@@ -9,4 +9,6 @@ public interface Loader {
     int getMaxSize();
 
     int getCapacity();
+
+    void placeDown();
 }

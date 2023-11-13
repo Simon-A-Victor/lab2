@@ -1,17 +1,13 @@
 import java.awt.*;
 import java.util.Stack;
 
-abstract class PlatformVehicle extends Car implements Loader {
+abstract class PlatformVehicle extends Car {
     private double platformAngle = 0.0;
-    private int maxSize;
-    private int capacity;
-    private Stack<Loadable> loaded;
 
-    public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size, int maxSize, int capacity) {
+
+
+    public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
         super(nrDoors, enginePower, color, modelName, x, y, size);
-        this.maxSize = maxSize;
-        this.capacity = capacity;
-        this.loaded  = new Stack<Loadable>();
     }
 
     protected double getPlatformAngle(){
@@ -33,25 +29,6 @@ abstract class PlatformVehicle extends Car implements Loader {
         }
     }
 
-    @Override
-    public int getMaxSize(){return maxSize;}
 
-    @Override
-    public int getCapacity(){return capacity;}
-
-    public void placeDown(){
-
-    }
-
-    @Override
-    public void load(Loadable other) {
-        this.loaded.push(other);
-    }
-
-    @Override
-    public void unload() {
-        Loadable unloaded = this.loaded.pop();
-
-    }
 
 }

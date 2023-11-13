@@ -3,6 +3,6 @@ public interface Loadable {
     double getCurrentSpeed();
     void setCurrentSpeed(double speed);
 
-    void placeDown();
+
 
 }
