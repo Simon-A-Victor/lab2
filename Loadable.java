@@ -1,7 +1,6 @@
-public interface Loadable {
+public interface Loadable extends Movable {
     int getSize();
-    double getCurrentSpeed();
-    void setCurrentSpeed(double speed);
+
 
 
 
