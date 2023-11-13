@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.lang.reflect.Type;
 import java.util.Stack;
 
 public class SemiTruck extends PlatformVehicle implements Loader{
@@ -6,12 +7,14 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     private Stack<Loadable> loaded;
     private int maxSize;
     private int capacity;
+    private Type acceptedtype;
 
     public SemiTruck(double x, double y){
         super(2,250, Color.black,"Semi69",x, y, 15);
         this.loaded  = new Stack<Loadable>();
         this.maxSize = 5;
         this.capacity = 4;
+        this.acceptedtype = Car.class;
     }
 
     public void tiltPlatform() {
