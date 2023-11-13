@@ -58,8 +58,12 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return this.loaded.size() < this.capacity;
     }
 
+    private boolean checkPosition(Loadable other){
+        return (Math.abs(this.getXPosition() - other.getXPosition()) < 5 && Math.abs(this.getYPosition() - other.getYPosition()) < 5);
+    }
+
     private boolean isValid(Loadable other){
-        return (this.isStationary() && !this.platformIsUp() && this.checkSize(other) && this.checkType(other) && this.checkCapacity()); //TODO: Add a statement checking distance
+        return (this.isStationary() && !this.platformIsUp() && this.checkSize(other) && this.checkType(other) && this.checkCapacity() && this.checkPosition(other));
     }
 
     @Override

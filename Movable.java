@@ -9,6 +9,9 @@ public interface Movable {
     void turnLeft();
     void turnRight();
 
+    double getXPosition();
+    double getYPosition();
+
     void setDirection(Directions direction);
 
     double getCurrentSpeed();
