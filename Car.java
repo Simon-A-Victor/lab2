@@ -14,6 +14,8 @@ abstract class Car implements Movable, Loadable {
 
     private boolean loaded;
 
+    private boolean active;
+
     private int size;
 
     private double x;
@@ -35,6 +37,14 @@ abstract class Car implements Movable, Loadable {
     @Override
     public boolean isLoaded() {
         return loaded;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void toggleActive() {
+        this.active = !this.active;
     }
 
     public Directions getDirection(){

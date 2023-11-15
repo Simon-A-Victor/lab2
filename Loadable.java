@@ -3,4 +3,5 @@ public interface Loadable extends Movable {
 
     boolean isLoaded();
 
+    void toggleActive();
 }
