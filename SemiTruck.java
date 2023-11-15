@@ -38,12 +38,6 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     @Override
     public int getCapacity(){return capacity;}
 
-    public void placeDown(Loadable vehicle){
-        if ((vehicle) != null){
-            double currentPosition = this.getXPosition();
-            vehicle.setXPosition(currentPosition += 1);
-        }
-    }
     private boolean checkSize(Loadable other){
         return other.getSize() <= this.maxSize;
     }
@@ -82,7 +76,10 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     public void unload() {
         if (this.isLoaded()){
             Loadable unloaded = this.loaded.pop();
-            this.placeDown(unloaded);
+            if ((unloaded) != null){
+                double currentPosition = this.getXPosition();
+                unloaded.setXPosition(currentPosition += 1);
+            }
             //unloaded.toggleActive();
         }
 

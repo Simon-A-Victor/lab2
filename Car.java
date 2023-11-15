@@ -20,6 +20,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         this.stopEngine();
         this.loaded = false;
         this.size = size;
+        this.active = true;
     }
 
     public boolean isLoaded() {
@@ -30,10 +31,13 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         return active;
     }
 
-    public void toggleActive() {
-        this.active = !this.active;
+    public void setActive() {
+        this.active = true;
     }
 
+    public void setUnactive(){
+        this.active = false;
+    }
 
     public int getNrDoors(){
         return nrDoors;
@@ -56,7 +60,9 @@ abstract class Car extends Vehicle implements Movable, Loadable {
 
 
     public void startEngine(){
+        this.active = true;
          this.setCurrentSpeed(0.1);
+
     }
 
     public void stopEngine(){
