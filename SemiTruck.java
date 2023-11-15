@@ -2,19 +2,18 @@ import java.awt.*;
 import java.lang.reflect.Type;
 import java.util.Stack;
 
-public class SemiTruck extends PlatformVehicle implements Loader{
+public class SemiTruck extends PlatformVehicle{
 
     private Stack<Loadable> loaded;
     private int maxSize;
     private int capacity;
-    private Type acceptedtype;
+
 
     public SemiTruck(double x, double y){
         super(2,250, Color.black,"Semi69",x, y, 15);
         this.loaded  = new Stack<Loadable>();
         this.maxSize = 5;
         this.capacity = 4;
-        this.acceptedtype = Car.class;
     }
 
     public void tiltPlatform() {
@@ -34,27 +33,10 @@ public class SemiTruck extends PlatformVehicle implements Loader{
 
     public int getMaxSize(){return maxSize;}
 
-    @Override
     public int getCapacity(){return capacity;}
 
     private boolean checkSize(Loadable other){
         return other.getSize() <= this.getMaxSize();
-    }
-
-    private boolean checkType(Loadable other){
-        return other.getClass() == acceptedtype;
-    }
-
-    private boolean checkCapacity(){
-        return this.loaded.size() < this.getCapacity();
-    }
-
-    private boolean checkPosition(Loadable other){
-        return (Math.abs(this.getXPosition() - other.getXPosition()) < 5 && Math.abs(this.getYPosition() - other.getYPosition()) < 5);
-    }
-
-    private boolean isValid(Loadable other){
-        return (this.isStationary() && !this.platformIsUp() && this.checkSize(other) && this.checkType(other) && this.checkCapacity() && this.checkPosition(other));
     }
 
     public boolean isLoaded(){
@@ -65,28 +47,19 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return !(this.getPlatformAngle() == 0);
     }
 
-
-
-
     public void load(Car other) {
-        if (this.isValid(other) && !this.platformIsUp()){
-            other.setUnactive();
-            this.loaded.push(other);
-            other.setXPosition(this.getXPosition());
-            other.setYPosition(this.getYPosition());
-            other.setCurrentSpeed(this.getCurrentSpeed());
+        if (other.getSize() <= this.getMaxSize() && !this.platformIsUp()){
+            LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getCapacity());
+            helper.load(other, loaded);
             other.setDirection(this.getDirection());
         }
     }
-    @Override
-    public void unload() {
-        if (this.isLoaded() && !this.platformIsUp()){
-            Loadable unloaded = this.loaded.pop();
-            double currentPosition = this.getXPosition();
-            unloaded.setXPosition(currentPosition += 1);
-            unloaded.setActive();
-        }
 
+    public void unload(Car other) {
+        if (loaded.getLast() == other && !this.platformIsUp()){
+            LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getCapacity());
+            helper.unload(other, loaded);
+        }
     }
 
     @Override

@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 public class Saab95Workshop{
 
-    private WorkshopHelper helper;
+    private LoaderHelper helper;
     private ArrayList<Saab95> storage;
 
     public Saab95Workshop(double x, double y, int capacity){
-        helper = new WorkshopHelper(x, y, capacity);
+        helper = new LoaderHelper(x, y, capacity);
         storage = new ArrayList<Saab95>();
     }
 

@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class WorkshopHelper {
+public class LoaderHelper {
     private double x;
     private double y;
     private int capacity;
 
-    public WorkshopHelper(double x, double y, int capacity){
+    public LoaderHelper(double x, double y, int capacity){
         this.x = x;
         this.y = y;
         this.capacity = capacity;

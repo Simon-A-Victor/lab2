@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class GeneralWorkshop{
     private int maxSize;
 
-    public WorkshopHelper helper;
+    public LoaderHelper helper;
     private ArrayList<Car> storage;
 
     public GeneralWorkshop(double x, double y, int capacity, int maxSize){
-        helper = new WorkshopHelper(x, y, capacity);
+        helper = new LoaderHelper(x, y, capacity);
         storage = new ArrayList<Car>();
         this.maxSize = maxSize;
     }
