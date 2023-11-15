@@ -32,7 +32,6 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return 1;
     }
 
-    @Override
     public int getMaxSize(){return maxSize;}
 
     @Override
@@ -66,9 +65,16 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return !(this.getPlatformAngle() == 0);
     }
 
+    public boolean validDistance(Loadable other){
+        double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
+        double YDiff = Math.abs(this.getYPosition() - other.getYPosition());
+        double totDiff = Math.sqrt(XDiff*XDiff + YDiff*YDiff);
+        return (totDiff < 4);
+    }
+
     @Override
     public void load(Loadable other) {
-        if (this.isValid(other) && !this.platformIsUp()){
+        if (this.isValid(other) && !this.platformIsUp() && this.validDistance(other)){
             other.setUnactive();
             this.loaded.push(other);
             other.setXPosition(this.getXPosition());
@@ -124,10 +130,6 @@ public class SemiTruck extends PlatformVehicle implements Loader{
             loadable.setYPosition(this.getYPosition());
         }
     }
-
-
-
-
 
 
 }
