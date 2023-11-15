@@ -87,36 +87,19 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         }
 
     }
-    @Override
-    public void gas(double amount){
-        if (0 <= amount && amount <= 1 && platformIsUp()){
-            this.incrementSpeed(amount);
-            for (Loadable loadable : loaded) {
-                loadable.setCurrentSpeed(this.getCurrentSpeed());
-            }
-        }
-    }
-    @Override
-    public void brake(double amount){
-        if (0 <= amount && amount <= 1){
-            this.decrementSpeed(amount);
-            for (Loadable loadable : loaded) {
-                loadable.setCurrentSpeed(this.getCurrentSpeed());
-            }
-        }
-    }
+
     @Override
     public void turnLeft() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
         for (Loadable loadable : loaded) {
-            loadable.turnLeft();
+            loadable.setDirection(this.getDirection());
         }
     }
     @Override
     public void turnRight() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
         for (Loadable loadable : loaded) {
-            loadable.turnRight();
+            loadable.setDirection(this.getDirection());
         }
     }
 
@@ -137,7 +120,8 @@ public class SemiTruck extends PlatformVehicle implements Loader{
                 break;
         }
         for (Loadable loadable : loaded) {
-            loadable.move();
+            loadable.setXPosition(this.getXPosition());
+            loadable.setYPosition(this.getYPosition());
         }
     }
 
