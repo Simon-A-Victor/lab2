@@ -1,5 +1,5 @@
 public interface Movable {
-    public enum Directions{
+    enum Directions{
         NORTH,
         EAST,
         SOUTH,
@@ -16,6 +16,8 @@ public interface Movable {
     void setYPosition(double amount);
 
     void setDirection(Directions direction);
+
+    Directions getDirection();
 
     double getCurrentSpeed();
     void setCurrentSpeed(double speed);
