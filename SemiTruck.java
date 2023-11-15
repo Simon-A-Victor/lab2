@@ -32,7 +32,6 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return 1;
     }
 
-    @Override
     public int getMaxSize(){return maxSize;}
 
     @Override
@@ -66,8 +65,8 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return !(this.getPlatformAngle() == 0);
     }
 
-    @Override
-    public void load(Loadable other) {
+
+    public void load(Car other) {
         if (this.isValid(other) && !this.platformIsUp()){
             other.setUnactive();
             this.loaded.push(other);

@@ -9,10 +9,13 @@ public class GeneralWorkshop extends Workshop{
         this.maxSize = maxSize;
     }
 
-    @Override
-    public void load(Loadable other) {
-        if (other instanceof Car && this.checkPosition(other)){
-            storage.add((Car) other);
+    private boolean checkSize(Car other){
+        return other.getSize() <= this.maxSize;
+    }
+
+    public void load(Car other) {
+        if (this.checkPosition(other) && this.checkSize(other) && this.checkCapacity(storage, this.getCapacity())){
+            storage.add(other);
             other.setCurrentSpeed(0.0);
             other.setXPosition(this.getXPosition());
             other.setYPosition(this.getYPosition());
@@ -22,6 +25,13 @@ public class GeneralWorkshop extends Workshop{
 
     @Override
     public void unload() {
+        Car other = storage.getLast();
+        storage.removeLast();
+        other.setXPosition(other.getXPosition()+1);
+    }
 
+    public void unload(Car other){
+        storage.remove(other);
+        other.setXPosition(other.getXPosition()+1);
     }
 }
