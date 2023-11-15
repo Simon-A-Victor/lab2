@@ -1,4 +1,4 @@
-public class Workshop implements Loader{
+abstract class Workshop implements Loader{
     private double x;
     private double y;
     private int maxSize;
@@ -12,22 +12,12 @@ public class Workshop implements Loader{
     }
 
     @Override
-    public void load(Loadable other) {
-
-    }
-
-    @Override
-    public void unload() {
-
-    }
-
-    @Override
     public int getMaxSize() {
-        return 0;
+        return maxSize;
     }
 
     @Override
     public int getCapacity() {
-        return 0;
+        return capacity;
     }
 }
