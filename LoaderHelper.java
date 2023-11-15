@@ -12,20 +12,20 @@ public class LoaderHelper {
         this.capacity = capacity;
     }
 
-    public boolean validDistance(Loadable other){
+    private boolean validDistance(Loadable other){
         double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
         double YDiff = Math.abs(this.getYPosition() - other.getYPosition());
         double totDiff = Math.sqrt(XDiff*XDiff + YDiff*YDiff);
         return (totDiff < 4);
     }
 
-    protected boolean checkCapacity(Collection storage, int capacity){
+    private boolean checkCapacity(Collection storage, int capacity){
         return storage.size() < capacity;
     }
 
-    public double getXPosition(){return this.x;}
-    public double getYPosition(){return this.y;}
-    public int getCapacity() {
+    private double getXPosition(){return this.x;}
+    private double getYPosition(){return this.y;}
+    private int getCapacity() {
         return capacity;
     }
 
