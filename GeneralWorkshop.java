@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public class GeneralWorkshop extends Workshop{
+public class GeneralWorkshop{
     private int maxSize;
+
+    public WorkshopHelper helper;
     private ArrayList<Car> storage;
 
     public GeneralWorkshop(double x, double y, int capacity, int maxSize){
-        super(x, y, capacity);
+        helper = new WorkshopHelper(x, y, capacity);
         this.maxSize = maxSize;
     }
 
@@ -14,24 +16,12 @@ public class GeneralWorkshop extends Workshop{
     }
 
     public void load(Car other) {
-        if (this.checkPosition(other) && this.checkSize(other) && this.checkCapacity(storage, this.getCapacity())){
-            storage.add(other);
-            other.setCurrentSpeed(0.0);
-            other.setXPosition(this.getXPosition());
-            other.setYPosition(this.getYPosition());
-            other.setUnactive();
+        if (this.checkSize(other)){
+            helper.load(other, storage);
         }
     }
 
-    @Override
-    public void unload() {
-        Car other = storage.getLast();
-        storage.removeLast();
-        other.setXPosition(other.getXPosition()+1);
-    }
-
     public void unload(Car other){
-        storage.remove(other);
-        other.setXPosition(other.getXPosition()+1);
+        helper.unload(other, storage);
     }
 }
