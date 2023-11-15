@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Stack;
 
 abstract class PlatformVehicle extends Vehicle {
     private double platformAngle = 0.0;
