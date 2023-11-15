@@ -38,12 +38,10 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     @Override
     public int getCapacity(){return capacity;}
 
-    public void placeDown(){
-        Loadable unloadVehicle = this.unload();
-        if ((unloadVehicle) != null){
-           // unloadVehicle.changeLoadedStatus();
-           // this.getDirection();
-           // unloadVehicle.
+    public void placeDown(Loadable vehicle){
+        if ((vehicle) != null){
+            double currentPosition = this.getXPosition();
+            vehicle.setXPosition(currentPosition += 1);
         }
     }
     private boolean checkSize(Loadable other){
@@ -66,6 +64,10 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return (this.isStationary() && !this.platformIsUp() && this.checkSize(other) && this.checkType(other) && this.checkCapacity() && this.checkPosition(other));
     }
 
+    public boolean isLoaded(){
+        return(!this.loaded.isEmpty());
+    }
+
     @Override
     public void load(Loadable other) {
         if (this.isValid(other)){
@@ -77,9 +79,13 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         }
     }
     @Override
-    public Loadable unload() {
-        Loadable unloaded = this.loaded.pop();
-        return unloaded;
+    public void unload() {
+        if (this.isLoaded()){
+            Loadable unloaded = this.loaded.pop();
+            this.placeDown(unloaded);
+            //unloaded.toggleActive();
+        }
+
     }
     @Override
     public void gas(double amount){
