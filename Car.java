@@ -47,6 +47,9 @@ abstract class Car implements Movable, Loadable {
         return y;
     }
 
+    public void setXPosition(double amount){x = amount;}
+    public void setYPosition(double amount){y = amount;}
+
     public int getNrDoors(){
         return nrDoors;
     }
@@ -90,7 +93,7 @@ abstract class Car implements Movable, Loadable {
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
 
-    private void decrementSpeed(double amount){
+    protected    void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
@@ -110,18 +113,18 @@ abstract class Car implements Movable, Loadable {
 
     @Override
     public void move() {
-        switch (direction){
+        switch (this.getDirection()){
             case NORTH:
-                y += getCurrentSpeed();
+                this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
                 break;
             case WEST:
-                x -= getCurrentSpeed();
+                this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
                 break;
             case SOUTH:
-                y -= getCurrentSpeed();
+                this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
                 break;
             case EAST:
-                x += getCurrentSpeed();
+                this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
                 break;
         }
     }
