@@ -11,6 +11,9 @@ abstract class Workshop implements Loader{
         this.capacity = capacity;
     }
 
+    public double getXPosition(){return this.x;}
+    public double getYPosition(){return this.y;}
+
     @Override
     public int getMaxSize() {
         return maxSize;
