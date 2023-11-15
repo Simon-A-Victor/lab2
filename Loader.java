@@ -2,11 +2,11 @@ public interface Loader {
 
     void load(Loadable other);
 
-    Loadable unload();
+    void unload();
 
     int getMaxSize();
 
     int getCapacity();
 
-    void placeDown();
+    void placeDown(Loadable vehicle);
 }
