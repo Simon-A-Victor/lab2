@@ -6,10 +6,18 @@ public class LoaderHelper {
     private double y;
     private int capacity;
 
+    private Movable.Directions direction;
+
     public LoaderHelper(double x, double y, int capacity){
         this.x = x;
         this.y = y;
         this.capacity = capacity;
+    }
+
+    public LoaderHelper(double x, double y, Movable.Directions direction){
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
     }
 
     private boolean validDistance(Loadable other){
@@ -28,10 +36,13 @@ public class LoaderHelper {
     private int getCapacity() {
         return capacity;
     }
+    private Movable.Directions getDirection(){
+        return direction;
+    }
 
     public void alignLoadables(Collection<Loadable> storage) {
         for (Loadable loadable : storage) {
-            //loadable.setDirection(this.getDirection());
+            loadable.setDirection(this.getDirection());
             loadable.setXPosition(this.getXPosition());
             loadable.setYPosition(this.getYPosition());
         }

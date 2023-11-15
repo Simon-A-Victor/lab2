@@ -62,15 +62,17 @@ public class SemiTruck extends PlatformVehicle{
         }
     }
 
+    @Override
     public void turnLeft() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
-        // this.alignStoredVehicles();
-
+        LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getDirection());
+        helper.alignLoadables(loaded);
     }
     @Override
     public void turnRight() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
-        // this.alignStoredVehicles();
+        LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getDirection());
+        helper.alignLoadables(loaded);
     }
 
     @Override
@@ -89,7 +91,8 @@ public class SemiTruck extends PlatformVehicle{
                 this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
                 break;
         }
-        // this.alignStoredVehicles();
+        LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getDirection());
+        helper.alignLoadables(loaded);
     }
 
 
