@@ -38,7 +38,7 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     public int getCapacity(){return capacity;}
 
     private boolean checkSize(Loadable other){
-        return other.getSize() <= this.maxSize;
+        return other.getSize() <= this.getMaxSize();
     }
 
     private boolean checkType(Loadable other){
@@ -46,7 +46,7 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     }
 
     private boolean checkCapacity(){
-        return this.loaded.size() < this.capacity;
+        return this.loaded.size() < this.getCapacity();
     }
 
     private boolean checkPosition(Loadable other){
