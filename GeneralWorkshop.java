@@ -8,6 +8,7 @@ public class GeneralWorkshop{
 
     public GeneralWorkshop(double x, double y, int capacity, int maxSize){
         helper = new WorkshopHelper(x, y, capacity);
+        storage = new ArrayList<Car>();
         this.maxSize = maxSize;
     }
 

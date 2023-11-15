@@ -65,12 +65,7 @@ public class SemiTruck extends PlatformVehicle implements Loader{
         return !(this.getPlatformAngle() == 0);
     }
 
-    public boolean validDistance(Loadable other){
-        double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
-        double YDiff = Math.abs(this.getYPosition() - other.getYPosition());
-        double totDiff = Math.sqrt(XDiff*XDiff + YDiff*YDiff);
-        return (totDiff < 4);
-    }
+
 
 
     public void load(Car other) {

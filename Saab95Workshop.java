@@ -6,6 +6,7 @@ public class Saab95Workshop{
 
     public Saab95Workshop(double x, double y, int capacity){
         helper = new WorkshopHelper(x, y, capacity);
+        storage = new ArrayList<Saab95>();
     }
 
     public void load(Saab95 other){
@@ -13,6 +14,6 @@ public class Saab95Workshop{
     }
 
     public void unload(Saab95 other){
-        helper.load(other, storage);
+        helper.unload(other, storage);
     }
 }

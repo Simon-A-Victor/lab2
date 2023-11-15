@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class WorkshopHelper {
     private double x;
@@ -11,11 +12,14 @@ public class WorkshopHelper {
         this.capacity = capacity;
     }
 
-    protected boolean checkPosition(Car other){
-        return (Math.abs(this.getXPosition() - other.getXPosition()) < 5 && Math.abs(this.getYPosition() - other.getYPosition()) < 5);
+    public boolean validDistance(Loadable other){
+        double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
+        double YDiff = Math.abs(this.getYPosition() - other.getYPosition());
+        double totDiff = Math.sqrt(XDiff*XDiff + YDiff*YDiff);
+        return (totDiff < 4);
     }
 
-    protected boolean checkCapacity(ArrayList storage, int capacity){
+    protected boolean checkCapacity(Collection storage, int capacity){
         return storage.size() < capacity;
     }
 
@@ -25,8 +29,8 @@ public class WorkshopHelper {
         return capacity;
     }
 
-    public void load(Car other, ArrayList storage){
-        if (this.checkPosition(other) && this.checkCapacity(storage, this.getCapacity())){
+    public void load(Loadable other, Collection storage){
+        if (this.validDistance(other) && this.checkCapacity(storage, this.getCapacity()) && !storage.contains(other)){
             storage.add(other);
             other.setCurrentSpeed(0.0);
             other.setXPosition(this.getXPosition());
@@ -35,10 +39,12 @@ public class WorkshopHelper {
         }
     }
 
-    public void unload(Car other, ArrayList storage){
-        storage.remove(other);
-        other.setXPosition(other.getXPosition()+1);
-        other.setActive();
+    public void unload(Loadable other, Collection storage){
+        if (storage.contains(other)){
+            storage.remove(other);
+            other.setXPosition(other.getXPosition()+1);
+            other.setActive();
+        }
     }
 
 
