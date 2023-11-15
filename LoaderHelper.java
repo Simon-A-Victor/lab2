@@ -29,6 +29,13 @@ public class LoaderHelper {
         return capacity;
     }
 
+    public void alignLoadables(Collection<Loadable> storage) {
+        for (Loadable loadable : storage) {
+            //loadable.setDirection(this.getDirection());
+            loadable.setXPosition(this.getXPosition());
+            loadable.setYPosition(this.getYPosition());
+        }
+    }
     public void load(Loadable other, Collection storage){
         if (this.validDistance(other) && this.checkCapacity(storage, this.getCapacity()) && !storage.contains(other)){
             storage.add(other);
