@@ -20,6 +20,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         this.stopEngine();
         this.loaded = false;
         this.size = size;
+        this.active = true;
     }
 
     public boolean isLoaded() {
