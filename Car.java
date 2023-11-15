@@ -12,6 +12,8 @@ abstract class Car implements Movable, Loadable {
     private String modelName; // The car model name
     private Directions direction;
 
+    private boolean loaded;
+
     private int size;
 
     private double x;
@@ -27,9 +29,13 @@ abstract class Car implements Movable, Loadable {
         this.size = size;
         this.stopEngine();
         this.direction  = Directions.NORTH;
+        this.loaded = false;
     }
 
-
+    @Override
+    public boolean isLoaded() {
+        return loaded;
+    }
 
     public Directions getDirection(){
         return direction;
