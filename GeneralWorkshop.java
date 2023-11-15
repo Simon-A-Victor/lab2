@@ -8,9 +8,16 @@ public class GeneralWorkshop extends Workshop{
         super(x, y, capacity);
         this.maxSize = maxSize;
     }
+
     @Override
     public void load(Loadable other) {
-
+        if (other instanceof Car && this.checkPosition(other)){
+            storage.add((Car) other);
+            other.setCurrentSpeed(0.0);
+            other.setXPosition(this.getXPosition());
+            other.setYPosition(this.getYPosition());
+            other.setUnactive();
+        }
     }
 
     @Override
