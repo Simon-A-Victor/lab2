@@ -7,6 +7,7 @@ abstract class PlatformVehicle extends Vehicle {
     private boolean loaded;
     private int size;
     private double getEnginePower;
+
     abstract double speedFactor();
 
 
@@ -18,43 +19,45 @@ abstract class PlatformVehicle extends Vehicle {
         this.size = size;
 
     }
-    protected void incrementSpeed(double amount){
-        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+
+    protected void incrementSpeed(double amount) {
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
     }
 
-    protected    void decrementSpeed(double amount){
-        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+    protected void decrementSpeed(double amount) {
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
-    protected double getPlatformAngle(){
+    protected double getPlatformAngle() {
         return platformAngle;
     }
 
-    protected void setPlatformAngle(double degrees){
+    protected void setPlatformAngle(double degrees) {
         platformAngle = degrees;
     }
 
-    protected boolean platformIsUp(){
+    protected boolean platformIsUp() {
         return getPlatformAngle() == 0.0;
     }
-    public double getEnginePower(){
+
+    public double getEnginePower() {
         return enginePower;
     }
-    public boolean isStationary(){
+
+    public boolean isStationary() {
         double speed = getCurrentSpeed();
         return speed == 0;
     }
 
-    public void gas(double amount){
-        if (0 <= amount && amount <= 1 && platformIsUp()){
+    public void gas(double amount) {
+        if (0 <= amount && amount <= 1 && platformIsUp()) {
             this.incrementSpeed(amount);
         }
     }
-    public void brake(double amount){
-        if (0 <= amount && amount <= 1){
+
+    public void brake(double amount) {
+        if (0 <= amount && amount <= 1) {
             decrementSpeed(amount);
         }
-
-
-
-}}
+    }
+}

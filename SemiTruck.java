@@ -62,7 +62,7 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     }
 
     public boolean platformIsUp(){
-        return !(this.getPlatformAngle() == 0);
+        return (this.getPlatformAngle() == 0);
     }
 
     public boolean validDistance(Loadable other){
@@ -91,22 +91,27 @@ public class SemiTruck extends PlatformVehicle implements Loader{
             unloaded.setXPosition(currentPosition += 1);
             unloaded.setActive();
         }
+    }
+
+    public void alignStoredVehicles(){
+        for (Loadable loadable : loaded) {
+            loadable.setDirection(this.getDirection());
+            loadable.setXPosition(this.getXPosition());
+            loadable.setYPosition(this.getYPosition());
+        }
 
     }
 
     @Override
     public void turnLeft() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
-        for (Loadable loadable : loaded) {
-            loadable.setDirection(this.getDirection());
-        }
+        this.alignStoredVehicles();
+
     }
     @Override
     public void turnRight() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
-        for (Loadable loadable : loaded) {
-            loadable.setDirection(this.getDirection());
-        }
+        this.alignStoredVehicles();
     }
 
     @Override
@@ -125,10 +130,7 @@ public class SemiTruck extends PlatformVehicle implements Loader{
                 this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
                 break;
         }
-        for (Loadable loadable : loaded) {
-            loadable.setXPosition(this.getXPosition());
-            loadable.setYPosition(this.getYPosition());
-        }
+        this.alignStoredVehicles();
     }
 
 
