@@ -90,46 +90,38 @@ public class SemiTruck extends PlatformVehicle implements Loader{
 
     @Override
     public void turnLeft() {
-        if (platformIsUp()){
-            this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
-            for (Loadable loadable : loaded) {
-                loadable.setDirection(this.getDirection());
-            }
+        this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
+        for (Loadable loadable : loaded) {
+            loadable.setDirection(this.getDirection());
         }
-
     }
     @Override
     public void turnRight() {
-        if (platformIsUp()) {
-            this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
-            for (Loadable loadable : loaded) {
-                loadable.setDirection(this.getDirection());
-            }
+        this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
+        for (Loadable loadable : loaded) {
+            loadable.setDirection(this.getDirection());
         }
-
     }
 
     @Override
     public void move() {
-        if(platformIsUp()) {
-            switch (this.getDirection()) {
-                case NORTH:
-                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
-                    break;
-                case WEST:
-                    this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
-                    break;
-                case SOUTH:
-                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
-                    break;
-                case EAST:
-                    this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
-                    break;
-            }
-            for (Loadable loadable : loaded) {
-                loadable.setXPosition(this.getXPosition());
-                loadable.setYPosition(this.getYPosition());
-            }
+        switch (this.getDirection()){
+            case NORTH:
+                this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
+                break;
+            case WEST:
+                this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
+                break;
+            case SOUTH:
+                this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
+                break;
+            case EAST:
+                this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
+                break;
+        }
+        for (Loadable loadable : loaded) {
+            loadable.setXPosition(this.getXPosition());
+            loadable.setYPosition(this.getYPosition());
         }
     }
 
