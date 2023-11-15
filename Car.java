@@ -36,7 +36,10 @@ abstract class Car extends Vehicle implements Movable, Loadable {
     }
 
     public void setUnactive(){
-        this.active = false;
+        if (isStationary()){
+            stopEngine();
+            this.active = false;
+        }
     }
 
     public int getNrDoors(){
@@ -46,27 +49,21 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         return enginePower;
     }
 
-
-
-
-
     public boolean isStationary(){
         double speed = getCurrentSpeed();
         return speed == 0;
     }
 
-
-
-
-
     public void startEngine(){
-        this.active = true;
+         this.active = true;
          this.setCurrentSpeed(0.1);
 
     }
 
     public void stopEngine(){
-        this.setCurrentSpeed(0.1);
+        if (getCurrentSpeed() == 0) {
+            this.active = false;
+        }
     }
 
     abstract double speedFactor();
@@ -75,7 +72,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
 
-    protected    void decrementSpeed(double amount){
+    protected void decrementSpeed(double amount){
         setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
     public void gas(double amount){
@@ -87,7 +84,6 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         if (0 <= amount && amount <= 1){
             decrementSpeed(amount);
         }
-
     }
     @Override
     public int getSize(){ return this.size;}

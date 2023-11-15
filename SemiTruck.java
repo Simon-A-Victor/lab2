@@ -59,12 +59,17 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     }
 
     public boolean isLoaded(){
-        return(!this.loaded.isEmpty());
+        return !(this.loaded.isEmpty());
+    }
+
+    public boolean platformIsUp(){
+        return !(this.getPlatformAngle() == 0);
     }
 
     @Override
     public void load(Loadable other) {
-        if (this.isValid(other)){
+        if (this.isValid(other) && !this.platformIsUp()){
+            other.setUnactive();
             this.loaded.push(other);
             other.setXPosition(this.getXPosition());
             other.setYPosition(this.getYPosition());
@@ -74,13 +79,11 @@ public class SemiTruck extends PlatformVehicle implements Loader{
     }
     @Override
     public void unload() {
-        if (this.isLoaded()){
+        if (this.isLoaded() && !this.platformIsUp()){
             Loadable unloaded = this.loaded.pop();
-            if ((unloaded) != null){
-                double currentPosition = this.getXPosition();
-                unloaded.setXPosition(currentPosition += 1);
-            }
-            //unloaded.toggleActive();
+            double currentPosition = this.getXPosition();
+            unloaded.setXPosition(currentPosition += 1);
+            unloaded.setActive();
         }
 
     }
