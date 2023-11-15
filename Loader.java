@@ -8,5 +8,4 @@ public interface Loader {
 
     int getCapacity();
 
-    void placeDown(Loadable vehicle);
 }
