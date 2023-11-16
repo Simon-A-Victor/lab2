@@ -1,10 +1,6 @@
+
+
 public interface Movable {
-    enum Directions{
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    }
     void move();
     void turnLeft();
     void turnRight();

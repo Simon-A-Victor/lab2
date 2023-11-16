@@ -47,6 +47,7 @@ public class SemiTruckTest {
     }
     @Test
     public void testIsLoaded(){
+        semi.tiltPlatform();
         semi.load(newCar);
         assertTrue("should be true", semi.isLoaded());
     }

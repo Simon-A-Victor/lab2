@@ -6,7 +6,7 @@ public class LoaderHelper {
     private double y;
     private int capacity;
 
-    private Movable.Directions direction;
+    private Directions direction;
 
     public LoaderHelper(double x, double y, int capacity){
         this.x = x;
@@ -14,7 +14,7 @@ public class LoaderHelper {
         this.capacity = capacity;
     }
 
-    public LoaderHelper(double x, double y, Movable.Directions direction){
+    public LoaderHelper(double x, double y, Directions direction){
         this.x = x;
         this.y = y;
         this.direction = direction;
@@ -36,7 +36,7 @@ public class LoaderHelper {
     private int getCapacity() {
         return capacity;
     }
-    private Movable.Directions getDirection(){
+    private Directions getDirection(){
         return direction;
     }
 
@@ -53,7 +53,7 @@ public class LoaderHelper {
             other.setCurrentSpeed(0.0);
             other.setXPosition(this.getXPosition());
             other.setYPosition(this.getYPosition());
-            other.setUnactive();
+            other.setInactive();
         }
     }
 
@@ -64,7 +64,4 @@ public class LoaderHelper {
             other.setActive();
         }
     }
-
-
-
 }

@@ -7,10 +7,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
-    private boolean loaded;
-
     private boolean active;
-
     private int size;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size){
@@ -18,13 +15,8 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.stopEngine();
-        this.loaded = false;
         this.size = size;
         this.active = true;
-    }
-
-    public boolean isLoaded() {
-        return loaded;
     }
 
     public boolean isActive() {
@@ -35,7 +27,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         this.active = true;
     }
 
-    public void setUnactive(){
+    public void setInactive(){
         if (isStationary()){
             stopEngine();
             this.active = false;

@@ -1,8 +1,5 @@
 public interface Loadable extends Movable {
     int getSize();
-
-    boolean isLoaded();
-
     void setActive();
-    void setUnactive();
+    void setInactive();
 }

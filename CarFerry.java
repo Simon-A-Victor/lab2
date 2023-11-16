@@ -4,22 +4,24 @@ import java.util.ArrayList;
 public class CarFerry extends Vehicle{
     private boolean rampIsDown;
     private double enginePower;
+    private int lanes;
     private int laneCapacity;
-    private ArrayList<Loadable> lane1;
+    private ArrayList<ArrayList<Loadable>> laneList;
 
-    private ArrayList<Loadable> lane2;
-
-    private ArrayList<Loadable> lane3;
+    private Directions direction;
 
 
     public CarFerry(Color color, String modelName, double x, double y) {
         super(Color.green, "PaddanXXL", x, y);
         this.rampIsDown = false;
         this.enginePower = 500;
+        this.lanes = 3;
         this.laneCapacity = 15;
-        this.lane1 = new ArrayList<Loadable>();
-        this.lane2 = new ArrayList<Loadable>();
-        this.lane3 = new ArrayList<Loadable>();
+        this.direction = Directions.NORTH;
+        this.laneList = new ArrayList<ArrayList<Loadable>>();
+        for (int i = 0; i < this.lanes; i++){
+            laneList.add(new ArrayList<Loadable>());
+        }
         this.setCurrentSpeed(0);
     }
     private double speedFactor(){return 0.5;}
@@ -58,7 +60,44 @@ public class CarFerry extends Vehicle{
     public void unload(Loadable other, ArrayList lane){
         if (this.rampIsDown && lane.getFirst() == other){
             LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getLaneCapacity());
+            helper.unload(other, lane);
         }
     }
 
+    private void alignContents(){
+        LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getDirection());
+        for (ArrayList<Loadable> lane : laneList){
+            helper.alignLoadables(lane);
+        }
+    }
+
+    @Override
+    public void turnLeft() {
+        this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
+        this.alignContents();
+    }
+    @Override
+    public void turnRight() {
+        this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
+        this.alignContents();
+    }
+
+    @Override
+    public void move() {
+        switch (this.getDirection()){
+            case NORTH:
+                this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
+                break;
+            case WEST:
+                this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
+                break;
+            case SOUTH:
+                this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
+                break;
+            case EAST:
+                this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
+                break;
+        }
+        this.alignContents();
+    }
 }

@@ -4,7 +4,7 @@ public class Vehicle implements Movable {
     private double currentSpeed;
     private Color color;
     private String modelName;
-    private Movable.Directions direction;
+    private Directions direction;
     private double x;
     private double y;
 
