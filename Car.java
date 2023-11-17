@@ -29,9 +29,7 @@ abstract class Car extends Vehicle implements Movable, Loadable {
     }
 
     public void stopEngine(){
-        if (getCurrentSpeed() == 0) {
-            this.setInactive();
-        }
+        this.setCurrentSpeed(0.0);
     }
 
     abstract double speedFactor();
