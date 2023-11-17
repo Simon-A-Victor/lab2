@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class CarFerry extends Vehicle{
     private boolean rampIsDown;
     private double enginePower;
+    private int maxSize;
     private int lanes;
     private int laneCapacity;
     private ArrayList<ArrayList<Loadable>> laneList;
@@ -15,6 +16,7 @@ public class CarFerry extends Vehicle{
         super(Color.green, "PaddanXXL", x, y);
         this.rampIsDown = false;
         this.enginePower = 500;
+        this.maxSize = 15;
         this.lanes = 3;
         this.laneCapacity = 15;
         this.direction = Directions.NORTH;
@@ -31,6 +33,12 @@ public class CarFerry extends Vehicle{
     }
 
     public double getEnginePower(){return this.enginePower;}
+
+    public int getMaxSize(){
+        return this.maxSize;
+    }
+
+    public boolean checkSize(Loadable other){return other.getSize() <= this.getMaxSize();}
 
     private void incrementSpeed(double amount){
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
@@ -52,8 +60,10 @@ public class CarFerry extends Vehicle{
 
     public void load(Loadable other, ArrayList lane){
         if (this.rampIsDown){
-            LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getLaneCapacity());
-            helper.load(other, lane);
+            if (this.checkSize(other)){
+                LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getLaneCapacity());
+                helper.load(other, lane);
+            }
         }
     }
 
