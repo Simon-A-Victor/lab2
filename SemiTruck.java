@@ -66,32 +66,36 @@ public class SemiTruck extends PlatformVehicle{
     }
     @Override
     public void turnLeft() {
-        this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
-        this.alignContents();
+        if (isActive()){
+            this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
+            this.alignContents();
+        }
     }
     @Override
     public void turnRight() {
-        this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
-        this.alignContents();
+        if (isActive()){
+            this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
+            this.alignContents();
+        }
     }
     @Override
     public void move() {
-        switch (this.getDirection()){
-            case NORTH:
-                this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
-                break;
-            case WEST:
-                this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
-                break;
-            case SOUTH:
-                this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
-                break;
-            case EAST:
-                this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
-                break;
+        if (isActive()){
+            switch (this.getDirection()){
+                case NORTH:
+                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
+                    break;
+                case WEST:
+                    this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
+                    break;
+                case SOUTH:
+                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
+                    break;
+                case EAST:
+                    this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
+                    break;
+            }
+            this.alignContents();
         }
-        this.alignContents();
     }
-
-
 }
