@@ -1,24 +1,51 @@
 import java.awt.*;
 
-public class Vehicle implements Movable {
+public class Vehicle implements Movable, Loadable {
     private double currentSpeed;
     private Color color;
     private String modelName;
     private Directions direction;
     private double x;
     private double y;
+    private int size;
+    private boolean active;
 
-    public Vehicle(Color color, String modelName, double x, double y){
+    public Vehicle(Color color, String modelName, double x, double y, int size){
         this.color = color;
         this.modelName = modelName;
         this.x = x;
         this.y = y;
+        this.size = size;
+        this.active = false;
     }
     public Color getColor(){
         return color;
     }
+    public int getSize(){
+        return this.size;
+    };
     public void setColor(Color clr){
         color = clr;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive() {
+        this.active = true;
+    }
+
+    public boolean isStationary(){
+        double speed = getCurrentSpeed();
+        return speed == 0;
+    }
+
+    public void setInactive(){
+        if (isStationary()){
+            this.setCurrentSpeed(0.0);
+            this.active = false;
+        }
     }
     @Override
     public void move() {

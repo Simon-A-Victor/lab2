@@ -7,31 +7,12 @@ abstract class Car extends Vehicle implements Movable, Loadable {
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
-    private boolean active;
-    private int size;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size){
-        super(color, modelName, x, y);
+        super(color, modelName, x, y, size);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.stopEngine();
-        this.size = size;
-        this.active = true;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive() {
-        this.active = true;
-    }
-
-    public void setInactive(){
-        if (isStationary()){
-            stopEngine();
-            this.active = false;
-        }
     }
 
     public int getNrDoors(){
@@ -41,20 +22,15 @@ abstract class Car extends Vehicle implements Movable, Loadable {
         return enginePower;
     }
 
-    public boolean isStationary(){
-        double speed = getCurrentSpeed();
-        return speed == 0;
-    }
-
     public void startEngine(){
-         this.active = true;
+         this.setActive();
          this.setCurrentSpeed(0.1);
 
     }
 
     public void stopEngine(){
         if (getCurrentSpeed() == 0) {
-            this.active = false;
+            this.setInactive();
         }
     }
 
@@ -77,6 +53,4 @@ abstract class Car extends Vehicle implements Movable, Loadable {
             decrementSpeed(amount);
         }
     }
-    @Override
-    public int getSize(){ return this.size;}
 }

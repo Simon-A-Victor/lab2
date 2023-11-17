@@ -17,4 +17,6 @@ public interface Movable {
 
     double getCurrentSpeed();
     void setCurrentSpeed(double speed);
+
+    boolean isStationary();
 }
