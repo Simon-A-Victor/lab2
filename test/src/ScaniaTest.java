@@ -25,6 +25,22 @@ public class ScaniaTest {
         assertEquals("Speedfactor should be 1", 1, scania.speedFactor(), 0.0);
     }
 
+    @Test
+    public void testBrake(){
+        scania.gas(0.5);
+        double InitialSpeed = scania.getCurrentSpeed();
+        scania.brake(0.5);
+        assertTrue("Speed should decrease",InitialSpeed > scania.getCurrentSpeed());
+
+    }
+
+    @Test
+    public void testPlatformIsUp(){
+        scania.setPlatformAngle(0);
+        assertTrue("PlatformIsUp should return True", scania.platformIsUp());
+
+    }
+
 
 
 }
