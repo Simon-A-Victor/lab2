@@ -14,16 +14,15 @@ public class SemiTruck extends PlatformVehicle{
         this.loaded  = new Stack<Loadable>();
         this.maxSize = 5;
         this.capacity = 4;
+        this.setDirection(Directions.NORTH);
     }
 
-    public void tiltPlatform() {
-        if(this.isStationary()){
-            if(this.platformIsUp()){
-                this.setPlatformAngle(70);
-            } else {
-                this.setPlatformAngle(0);
-            }
-        }
+    public void setPlatformUp() {
+        this.setPlatformAngle(0);
+    }
+
+    public void setPlatformDown(){
+        this.setPlatformAngle(70);
     }
 
     @Override
@@ -38,7 +37,6 @@ public class SemiTruck extends PlatformVehicle{
     private boolean checkSize(Loadable other){
         return other.getSize() <= this.getMaxSize();
     }
-
     public boolean isLoaded(){
         return !(this.loaded.isEmpty());
     }
@@ -48,7 +46,7 @@ public class SemiTruck extends PlatformVehicle{
     }
 
     public void load(Car other) {
-        if (other.getSize() <= this.getMaxSize() && !this.platformIsUp()){
+        if (this.checkSize(other) && !this.platformIsUp()){
             LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getCapacity());
             helper.load(other, loaded);
             other.setDirection(this.getDirection());
@@ -66,7 +64,6 @@ public class SemiTruck extends PlatformVehicle{
         LoaderHelper helper = new LoaderHelper(this.getXPosition(), this.getYPosition(), this.getDirection());
         helper.alignLoadables(loaded);
     }
-
     @Override
     public void turnLeft() {
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
@@ -77,7 +74,6 @@ public class SemiTruck extends PlatformVehicle{
         this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
         this.alignContents();
     }
-
     @Override
     public void move() {
         switch (this.getDirection()){
@@ -96,4 +92,6 @@ public class SemiTruck extends PlatformVehicle{
         }
         this.alignContents();
     }
+
+
 }
