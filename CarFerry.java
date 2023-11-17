@@ -15,7 +15,7 @@ public class CarFerry extends Vehicle{
     public CarFerry(Color color, String modelName, double x, double y) {
         super(Color.green, "PaddanXXL", x, y);
         this.rampIsDown = false;
-        this.enginePower = 500;
+        this.enginePower = 50;
         this.maxSize = 15;
         this.lanes = 3;
         this.laneCapacity = 15;
