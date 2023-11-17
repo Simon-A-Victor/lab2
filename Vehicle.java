@@ -49,29 +49,35 @@ public class Vehicle implements Movable, Loadable {
     }
     @Override
     public void move() {
-        switch (this.getDirection()){
-            case NORTH:
-                this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
-                break;
-            case WEST:
-                this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
-                break;
-            case SOUTH:
-                this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
-                break;
-            case EAST:
-                this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
-                break;
+        if (isActive()){
+            switch (this.getDirection()){
+                case NORTH:
+                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
+                    break;
+                case WEST:
+                    this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
+                    break;
+                case SOUTH:
+                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
+                    break;
+                case EAST:
+                    this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
+                    break;
+            }
         }
     }
     @Override
     public void turnLeft() {
-        this.setDirection(Directions.values()[(direction.ordinal()+3)%4]);
+        if (isActive()) {
+            this.setDirection(Directions.values()[(direction.ordinal()+3)%4]);
+        }
     }
 
     @Override
     public void turnRight() {
-        this.setDirection(Directions.values()[(direction.ordinal()+1)%4]);
+        if (isActive()) {
+            this.setDirection(Directions.values()[(direction.ordinal()+1)%4]);
+        }
     }
 
     @Override
