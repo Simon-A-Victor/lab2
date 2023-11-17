@@ -33,12 +33,17 @@ public class Workshop<V extends Vehicle>{
         return storage.size() < capacity;
     }
 
-    private boolean checkSize(Vehicle other){
+    private boolean checkSize(V other){
         return other.getSize() <= this.maxSize;
     }
 
+    private boolean checkValid(V other){
+        return this.checkDistance(other) && this.checkCapacity(storage, this.getCapacity()) && !storage.contains(other) && checkSize(other);
+
+    }
+
     public void load(V other){
-        if (this.checkDistance(other) && this.checkCapacity(storage, this.getCapacity()) && !storage.contains(other)){
+        if (checkValid(other)){
             storage.add(other);
             other.setCurrentSpeed(0.0);
             other.setXPosition(this.getXPosition());
