@@ -16,7 +16,7 @@ public class Vehicle implements Movable, Loadable {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.active = false;
+        this.active = true;
     }
     public Color getColor(){
         return color;
