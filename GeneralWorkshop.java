@@ -12,17 +12,17 @@ public class GeneralWorkshop{
         this.maxSize = maxSize;
     }
 
-    private boolean checkSize(Car other){
+    private boolean checkSize(Vehicle other){
         return other.getSize() <= this.maxSize;
     }
 
-    public void load(Car other) {
+    public void load(Vehicle other) {
         if (this.checkSize(other)){
             helper.load(other, storage);
         }
     }
 
-    public void unload(Car other){
+    public void unload(Vehicle other){
         helper.unload(other, storage);
     }
 }
