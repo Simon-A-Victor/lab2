@@ -22,7 +22,7 @@ public class SemiTruckTest {
 
     @Test
     public void testSetPlatformUp(){
-        semi.setPlatformAngle(70);
+        semi.setPlatformDown();
         semi.setPlatformUp();
         assertTrue("platform should be up", semi.platformIsUp());
     }
