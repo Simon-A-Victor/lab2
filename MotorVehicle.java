@@ -21,6 +21,7 @@ abstract class MotorVehicle implements Movable, Loadable {
         this.size = size;
         this.enginePower = enginePower;
         this.setActive();
+        this.stopEngine();
     }
 
     public Color getColor(){
@@ -28,14 +29,27 @@ abstract class MotorVehicle implements Movable, Loadable {
     }
     public int getSize(){
         return this.size;
-    };
+    }
+    public int getNrDoors(){
+        return nrDoors;
+    }
 
     public double getEnginePower(){
         return enginePower;
     }
+    public void stopEngine(){
+        this.setCurrentSpeed(0.0);
+    }
+    public void startEngine(){
+        this.setActive();
+        this.setCurrentSpeed(0.1);
+
+    }
     public void setColor(Color clr){
         color = clr;
     }
+
+    abstract double speedFactor();
 
     public boolean isActive() {
         return active;

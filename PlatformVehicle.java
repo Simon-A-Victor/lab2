@@ -9,12 +9,11 @@ abstract class PlatformVehicle extends MotorVehicle {
 
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
-        super(color, modelName, x, y, size, enginePower);
+        super(nrDoors,color, modelName, x, y, size, enginePower);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.loaded = false;
         this.size = size;
-
     }
 
     protected double getPlatformAngle() {

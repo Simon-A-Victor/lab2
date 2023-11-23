@@ -3,27 +3,29 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class SemiTruck extends PlatformVehicle{
+public class SemiTruck extends MotorVehicle{
 
     private ArrayList<Car> loaded;
     private int maxSize;
     private int capacity;
+    private boolean platformUp;
 
 
     public SemiTruck(double x, double y){
-        super(2,250, Color.black,"Semi69",x, y, 15);
+        super(2, Color.black,"Semi69", x, y, 15, 5);
         this.loaded  = new ArrayList<Car>();
         this.maxSize = 5;
         this.capacity = 4;
         this.setDirection(Directions.NORTH);
+        this.platformUp = true;
     }
 
     public void setPlatformUp() {
-        this.setPlatformAngle(0);
+        this.platformUp = true;
     }
 
     public void setPlatformDown(){
-        this.setPlatformAngle(70);
+        this.platformUp = false;
     }
 
     public int getMaxSize(){return maxSize;}
@@ -38,7 +40,7 @@ public class SemiTruck extends PlatformVehicle{
     }
 
     public boolean platformIsUp(){
-        return (this.getPlatformAngle() == 0);
+        return platformUp;
     }
     private boolean checkDistance(Car other){
         double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
@@ -50,11 +52,23 @@ public class SemiTruck extends PlatformVehicle{
         return this.loaded.size() < this.capacity;
     }
 
+    private boolean checkValidLoad(Car other){
+        return this.checkSize(other) && !this.platformIsUp() && this.checkDistance(other) && this.checkCapacity();
+    }
+
     public void load(Car other) {
-        if (this.checkSize(other) && !this.platformIsUp() && this.checkDistance(other) && this.checkCapacity()){
+        if (checkValidLoad(other)) {
             loaded.add(other);
             this.alignContents();
         }
+    }
+
+    private boolean checkIfLastinArray(Car other){
+        return loaded.get(loaded.size() - 1) == other;
+    }
+
+    private boolean checkValidUnload(Car other){
+        return checkIfLastinArray(other) && !this.platformIsUp();
     }
 
     public void unload(Car other) {
