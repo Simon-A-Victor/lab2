@@ -15,14 +15,14 @@ public class SemiTruckTest {
 
     @Test
     public void testSetPlatformDown(){
-        semi.setPlatformAngle(0);
+        semi.setPlatformUp();
         semi.setPlatformDown();
-        assertEquals("platform should be down", 70, semi.getPlatformAngle(),0);
+        assertFalse("platform should be down", semi.platformIsUp());
     }
 
     @Test
     public void testSetPlatformUp(){
-        semi.setPlatformAngle(70);
+        semi.setPlatformDown();
         semi.setPlatformUp();
         assertTrue("platform should be up", semi.platformIsUp());
     }

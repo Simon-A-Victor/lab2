@@ -41,6 +41,11 @@ public class ScaniaTest {
 
     }
 
+    @Test
+    public void testTiltPlatform(){
+        scania.tiltPlatform(20);
+        assertTrue("degrees should be 20", 20 == scania.getPlatformAngle());
+    }
 
 
 }
