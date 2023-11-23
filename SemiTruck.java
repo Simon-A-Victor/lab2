@@ -16,7 +16,6 @@ public class SemiTruck extends MotorVehicle{
         this.loaded  = new ArrayList<Car>();
         this.maxSize = 5;
         this.capacity = 4;
-        this.setDirection(Directions.NORTH);
         this.platformUp = true;
     }
 

@@ -22,6 +22,7 @@ abstract class MotorVehicle implements Movable, Loadable {
         this.enginePower = enginePower;
         this.setActive();
         this.stopEngine();
+        this.setDirection(Directions.NORTH);
     }
 
     public Color getColor(){
