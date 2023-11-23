@@ -1,6 +1,7 @@
 import java.awt.*;
 
-abstract class Vehicle implements Movable, Loadable {
+abstract class MotorVehicle implements Movable, Loadable {
+    private int nrDoors;
     private double currentSpeed;
     private Color color;
     private String modelName;
@@ -10,9 +11,9 @@ abstract class Vehicle implements Movable, Loadable {
     private int size;
     private boolean active;
 
-    abstract double speedFactor();
     private double enginePower; // Engine power of the car
-    public Vehicle(Color color, String modelName, double x, double y, int size, double enginePower){
+    public MotorVehicle(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
+        this.nrDoors = nrDoors;
         this.color = color;
         this.modelName = modelName;
         this.x = x;
@@ -129,5 +130,16 @@ abstract class Vehicle implements Movable, Loadable {
     @Override
     public void setCurrentSpeed(double speed){
         currentSpeed = speed;
+    }
+
+    public void gas(double amount){
+        if (0 <= amount && amount <= 1){
+            this.incrementSpeed(amount);
+        }
+    }
+    public void brake(double amount){
+        if (0 <= amount && amount <= 1){
+            decrementSpeed(amount);
+        }
     }
 }

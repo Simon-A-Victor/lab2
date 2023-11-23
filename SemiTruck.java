@@ -26,11 +26,6 @@ public class SemiTruck extends PlatformVehicle{
         this.setPlatformAngle(70);
     }
 
-    @Override
-    public double speedFactor() {
-        return 1;
-    }
-
     public int getMaxSize(){return maxSize;}
 
     public int getCapacity(){return capacity;}
@@ -63,7 +58,7 @@ public class SemiTruck extends PlatformVehicle{
     }
 
     public void unload(Car other) {
-        if (loaded.getLast() == other && !this.platformIsUp()){
+        if (checkValidUnload(other)){
             loaded.remove(other);
             other.setXPosition(other.getXPosition()+1);
             other.setActive();
@@ -79,35 +74,30 @@ public class SemiTruck extends PlatformVehicle{
     }
     @Override
     public void turnLeft() {
+        super.turnLeft();
+
         if (isActive()){
-            this.setDirection(Directions.values()[(this.getDirection().ordinal()+3)%4]);
             this.alignContents();
         }
     }
     @Override
     public void turnRight() {
+        super.turnRight();
+
         if (isActive()){
-            this.setDirection(Directions.values()[(this.getDirection().ordinal()+1)%4]);
             this.alignContents();
         }
     }
+
+    @Override
+    double speedFactor() {
+        return 1;
+    }
+
     @Override
     public void move() {
-        if (isActive()){
-            switch (this.getDirection()){
-                case NORTH:
-                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
-                    break;
-                case WEST:
-                    this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
-                    break;
-                case SOUTH:
-                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
-                    break;
-                case EAST:
-                    this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
-                    break;
-            }
+        super.move();
+        if (this.isActive()){
             this.alignContents();
         }
     }

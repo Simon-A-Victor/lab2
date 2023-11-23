@@ -18,11 +18,10 @@ public class Scania extends PlatformVehicle {
         }
     }
 
-    @Override
-    public double speedFactor() {
+    protected double speedFactor() {
         return 1;
     }
 
 
 
-}
+

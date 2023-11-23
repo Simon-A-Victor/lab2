@@ -1,6 +1,6 @@
 import java.awt.*;
 
-abstract class PlatformVehicle extends Vehicle {
+abstract class PlatformVehicle extends MotorVehicle {
     private double platformAngle = 0.0;
     private int nrDoors;
     private double enginePower;
@@ -22,25 +22,12 @@ abstract class PlatformVehicle extends Vehicle {
     }
 
     protected void setPlatformAngle(double degrees) {
-        if (this.getPlatformAngle() == 0){
+        if (getPlatformAngle() == 0){
             platformAngle = degrees;
         }
-
     }
 
     protected boolean platformIsUp() {
         return getPlatformAngle() == 0.0;
-    }
-
-    public void gas(double amount) {
-        if (0 <= amount && amount <= 1 && platformIsUp()) {
-            this.incrementSpeed(amount);
-        }
-    }
-
-    public void brake(double amount) {
-        if (0 <= amount && amount <= 1) {
-            decrementSpeed(amount);
-        }
     }
 }
