@@ -6,7 +6,6 @@ abstract class PlatformVehicle extends Vehicle {
     private double enginePower;
     private boolean loaded;
     private int size;
-    private double getEnginePower;
 
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
@@ -17,8 +16,6 @@ abstract class PlatformVehicle extends Vehicle {
         this.size = size;
 
     }
-
-
 
     protected double getPlatformAngle() {
         return platformAngle;
@@ -33,15 +30,6 @@ abstract class PlatformVehicle extends Vehicle {
 
     protected boolean platformIsUp() {
         return getPlatformAngle() == 0.0;
-    }
-
-    public double getEnginePower() {
-        return enginePower;
-    }
-
-    public boolean isStationary() {
-        double speed = getCurrentSpeed();
-        return speed == 0;
     }
 
     public void gas(double amount) {
