@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Vehicle implements Movable, Loadable {
+abstract class Vehicle implements Movable, Loadable {
     private double currentSpeed;
     private Color color;
     private String modelName;
@@ -10,20 +10,28 @@ public class Vehicle implements Movable, Loadable {
     private int size;
     private boolean active;
 
-    public Vehicle(Color color, String modelName, double x, double y, int size){
+    abstract double speedFactor();
+    private double enginePower; // Engine power of the car
+    public Vehicle(Color color, String modelName, double x, double y, int size, double enginePower){
         this.color = color;
         this.modelName = modelName;
         this.x = x;
         this.y = y;
         this.size = size;
+        this.enginePower = enginePower;
         this.setActive();
     }
+
     public Color getColor(){
         return color;
     }
     public int getSize(){
         return this.size;
     };
+
+    public double getEnginePower(){
+        return enginePower;
+    }
     public void setColor(Color clr){
         color = clr;
     }
@@ -34,6 +42,14 @@ public class Vehicle implements Movable, Loadable {
 
     public void setActive() {
         this.active = true;
+    }
+
+    protected void incrementSpeed(double amount) {
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
+    }
+
+    protected void decrementSpeed(double amount) {
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
     public boolean isStationary(){
@@ -72,24 +88,20 @@ public class Vehicle implements Movable, Loadable {
             this.setDirection(Directions.values()[(direction.ordinal()+3)%4]);
         }
     }
-
     @Override
     public void turnRight() {
         if (this.isActive()) {
             this.setDirection(Directions.values()[(direction.ordinal()+1)%4]);
         }
     }
-
     @Override
     public double getXPosition() {
         return this.x;
     }
-
     @Override
     public double getYPosition() {
         return this.y;
     }
-
     @Override
     public void setXPosition(double amount) {
         this.x = amount;

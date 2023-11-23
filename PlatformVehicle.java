@@ -8,11 +8,9 @@ abstract class PlatformVehicle extends Vehicle {
     private int size;
     private double getEnginePower;
 
-    abstract double speedFactor();
-
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
-        super(color, modelName, x, y, size);
+        super(color, modelName, x, y, size, enginePower);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.loaded = false;
@@ -20,20 +18,17 @@ abstract class PlatformVehicle extends Vehicle {
 
     }
 
-    protected void incrementSpeed(double amount) {
-        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
-    }
 
-    protected void decrementSpeed(double amount) {
-        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
-    }
 
     protected double getPlatformAngle() {
         return platformAngle;
     }
 
     protected void setPlatformAngle(double degrees) {
-        platformAngle = degrees;
+        if (this.getPlatformAngle() == 0){
+            platformAngle = degrees;
+        }
+
     }
 
     protected boolean platformIsUp() {

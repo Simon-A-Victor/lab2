@@ -6,20 +6,15 @@ import java.awt.*;
 abstract class Car extends Vehicle implements Movable, Loadable {
 
     private int nrDoors; // Number of doors on the car
-    private double enginePower; // Engine power of the car
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size){
-        super(color, modelName, x, y, size);
+    public Car(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
+        super(color, modelName, x, y, size, enginePower);
         this.nrDoors = nrDoors;
-        this.enginePower = enginePower;
         this.stopEngine();
     }
 
     public int getNrDoors(){
         return nrDoors;
-    }
-    public double getEnginePower(){
-        return enginePower;
     }
 
     public void startEngine(){
@@ -31,8 +26,6 @@ abstract class Car extends Vehicle implements Movable, Loadable {
     public void stopEngine(){
         this.setCurrentSpeed(0.0);
     }
-
-    abstract double speedFactor();
 
     protected void incrementSpeed(double amount){
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
